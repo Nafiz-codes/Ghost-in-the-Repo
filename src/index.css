@@ -1,0 +1,198 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+@import "@fontsource-variable/fraunces";
+@import "@fontsource-variable/inter";
+@import "@fontsource-variable/jetbrains-mono";
+
+@theme inline {
+  --font-sans: "Inter Variable", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Fraunces Variable", Georgia, serif;
+  --font-heading: var(--font-display);
+  --font-mono: "JetBrains Mono Variable", ui-monospace, monospace;
+
+  --color-noche: var(--noche);
+  --color-noche-deep: var(--noche-deep);
+  --color-surface: var(--surface);
+  --color-elevated: var(--elevated);
+  --color-line: var(--line);
+  --color-rosa: var(--rosa);
+  --color-rosa-light: var(--rosa-light);
+  --color-turquesa: var(--turquesa);
+  --color-turquesa-light: var(--turquesa-light);
+  --color-cempasuchil: var(--cempasuchil);
+  --color-gold: var(--gold);
+  --color-hueso: var(--hueso);
+  --color-soft: var(--soft);
+  --color-critical: var(--critical);
+  --color-high: var(--cempasuchil);
+  --color-medium: var(--gold);
+  --color-low: var(--turquesa);
+  --color-success: var(--success);
+
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --color-foreground: var(--foreground);
+  --color-background: var(--background);
+
+  --radius-sm: calc(var(--radius) * 0.5);
+  --radius-md: calc(var(--radius) * 0.75);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.33);
+  --radius-2xl: calc(var(--radius) * 1.66);
+}
+
+:root {
+  --noche: #1e0b36;
+  --noche-deep: #140626;
+  --surface: #2a1450;
+  --elevated: #36205f;
+  --line: #4a3470;
+  --rosa: #e6007e;
+  --rosa-light: #ff4fab;
+  --turquesa: #00b3b3;
+  --turquesa-light: #3fd6d6;
+  --cempasuchil: #ff8c00;
+  --gold: #ffc20e;
+  --hueso: #fff4e0;
+  /* #bbafcb from the brief; lightest muted tone that still reads as secondary */
+  --soft: #c4b8d4;
+  --critical: #ff4f5e;
+  --success: #7bd88f;
+
+  --radius: 0.75rem;
+  --background: var(--noche);
+  --foreground: var(--hueso);
+  --card: var(--surface);
+  --card-foreground: var(--hueso);
+  --popover: var(--elevated);
+  --popover-foreground: var(--hueso);
+  --primary: var(--rosa);
+  --primary-foreground: var(--hueso);
+  --secondary: var(--elevated);
+  --secondary-foreground: var(--hueso);
+  --muted: var(--surface);
+  --muted-foreground: var(--soft);
+  --accent: var(--elevated);
+  --accent-foreground: var(--hueso);
+  --destructive: var(--critical);
+  --border: var(--line);
+  --input: var(--line);
+  --ring: var(--turquesa);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  html {
+    color-scheme: dark;
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply bg-noche-deep font-sans text-hueso antialiased;
+  }
+  ::selection {
+    background: var(--rosa);
+    color: var(--hueso);
+  }
+  :focus-visible {
+    outline: 3px solid var(--turquesa);
+    outline-offset: 2px;
+  }
+}
+
+@layer components {
+  .dot-grid {
+    background-image: radial-gradient(rgb(255 244 224 / 0.05) 1px, transparent 1px);
+    background-size: 28px 28px;
+  }
+
+  .art-fade {
+    mask-image: radial-gradient(ellipse 50% 52% at 50% 47%, #000 58%, transparent 100%);
+  }
+
+  .papel-flag {
+    clip-path: polygon(0 0, 100% 0, 100% 82%, 84% 100%, 67% 82%, 50% 100%, 33% 82%, 16% 100%, 0 82%);
+  }
+
+  .ofrenda-frame {
+    position: relative;
+    border: 1px solid color-mix(in oklab, var(--gold) 70%, transparent);
+    box-shadow:
+      inset 0 0 0 4px var(--noche),
+      inset 0 0 0 5px color-mix(in oklab, var(--gold) 25%, transparent),
+      0 18px 48px rgb(8 2 19 / 0.4);
+  }
+
+  .marigold {
+    position: relative;
+    display: inline-block;
+    flex: none;
+    border-radius: 47% 53% 44% 56%;
+    background: var(--cempasuchil);
+    box-shadow: 0 0 14px rgb(255 140 0 / 0.35);
+  }
+  .marigold::before,
+  .marigold::after {
+    content: "";
+    position: absolute;
+    border-radius: 50%;
+  }
+  .marigold::before {
+    inset: 18%;
+    border: 2px dotted var(--gold);
+    transform: rotate(45deg);
+  }
+  .marigold::after {
+    inset: 36%;
+    background: var(--gold);
+  }
+  .marigold[data-dim="true"] {
+    background: var(--elevated);
+    box-shadow: none;
+  }
+  .marigold[data-dim="true"]::before {
+    border-color: var(--line);
+  }
+  .marigold[data-dim="true"]::after {
+    background: var(--line);
+  }
+
+  .flame {
+    border-radius: 80% 20% 70% 30%;
+    transform: rotate(45deg);
+    animation: flicker 1.8s ease-in-out infinite alternate;
+  }
+}
+
+@keyframes flicker {
+  to {
+    transform: rotate(52deg) scale(0.88, 1.08);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
